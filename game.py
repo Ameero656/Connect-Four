@@ -39,24 +39,3 @@ class Game():
 			for c in self.game_board[r]:
 				print(f"{c}|", end="")
 			print("\n")
-
-	def game_over(self):
-		for i, r in enumerate(self.game_board):
-			for j, c in enumerate(self.game_board[i]):
-				#check if horizontal in range
-				won = True
-				if j - 3 >= 0:
-					for checked_tile in range(4):
-						tile_value = self.game_board[i][checked_tile + j]
-						if tile_value != self.game_board[i][j]:
-							won = False
-				if won:
-					return True
-
-				#check if horizontal match
-
-				#check if vertical in range
-				#check if vertical match
-
-				#check if diagonal in range
-				#check if diagnoal match
