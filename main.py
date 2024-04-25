@@ -10,10 +10,7 @@ def main():
 	game_instance.place_token(1, 3)
 	game_instance.place_token(2, 2)
 	game_instance.place_token(1, 3)
-	game_instance.place_token(2, 2)
-	game_instance.place_token(1, 3)
-	game_instance.place_token(2, 2)
-	game_instance.place_token(1, 4)
+	
 
 	game_instance.display_game_board()
 

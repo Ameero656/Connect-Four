@@ -71,27 +71,22 @@ class Engine():
             return None, self.score_game_board(game_board, is_robot_turn)
 
         possible_moves = self.get_possible_moves(game_board)
-        if is_robot_turn:
-            best_move = None
-            evaluation = -999999
-            for move in possible_moves:
-                new_game_board = game_board
-                new_game_board = self.place_token(self.player, move, new_game_board)
-                _, new_evaluation = self.minimax(depth-1, new_game_board, False)
-                if new_evaluation > evaluation:
-                    best_move = move
-                    evaluation = new_evaluation
-            return best_move, evaluation
-        else:
-            best_move = None
-            evaluation = 999999
-            for move in possible_moves:
-                new_game_board = game_board
-                new_game_board = self.place_token(self.enemy, move, new_game_board)
-                _, new_evaluation = self.minimax(depth-1, new_game_board, True)
-                if new_evaluation < evaluation:
-                    best_move = move
-                    evaluation = new_evaluation
-            return best_move, evaluation
+        best_move = None
+        evaluation = -999999 if is_robot_turn else 999999
+        for move in possible_moves:
+            new_game_board = [row[:] for row in game_board]
+            new_game_board = self.place_token(self.player if is_robot_turn else self.enemy, move, new_game_board)
+            _, new_evaluation = self.minimax(depth - 1, new_game_board, not is_robot_turn)
+
+            if is_robot_turn and new_evaluation > evaluation:
+                best_move = move
+                evaluation = new_evaluation
+            elif not is_robot_turn and new_evaluation < evaluation:
+                best_move = move
+                evaluation = new_evaluation
+
+        return best_move, evaluation
+
+        
 
                 
