@@ -6,6 +6,8 @@ class Game():
 		self.ROWS = ROWS
 		self.COLS = COLS
 		self.set_board()
+		self.colors = ["\033[0m", "\033[0;31m","\033[0;34m"]
+		self.reset_string = "\033[0m"
 
 	def set_board(self):
 		for r in range(self.ROWS):
@@ -37,5 +39,6 @@ class Game():
 	def display_game_board(self):
 		for r in range(len(self.game_board)):
 			for c in self.game_board[r]:
-				print(f"{c}|", end="")
+				color_string = self.colors[c]
+				print(f"{color_string}{c}{self.reset_string}|", end="")
 			print("\n")
