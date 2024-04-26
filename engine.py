@@ -82,7 +82,7 @@ class Engine():
                 if game_board[row][col] == good_token:
                     score+= 10 - abs(col - 3)
                 elif game_board[row][col] == bad_token:
-                    score+= 10 - abs(col - 3)
+                    score-= 10 - abs(col - 3)
         
         return score
 
